@@ -177,10 +177,10 @@ cython_debug/
 *.vsix
 
 # Project-specific data
-data/
-*.db
-*.sqlite
-*.sqlite3
+# data/  # 允许上传数据库文件
+# *.db
+# *.sqlite
+# *.sqlite3
 
 # Logs
 logs/
