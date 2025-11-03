@@ -1,0 +1,20 @@
+[project]
+name = "cc-company-red-and-black"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiosqlite>=0.21.0",
+    "fastapi>=0.120.4",
+    "httpx>=0.28.1",
+    "pydantic>=2.12.3",
+    "pydantic-settings>=2.11.0",
+    "uvicorn>=0.38.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.2.0",
+]

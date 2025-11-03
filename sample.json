@@ -1,0 +1,21 @@
+{
+    "code": 200,
+    "msg": "处理成功",
+    "data": {
+        "totalPage": 0,
+        "total": 1,
+        "rows": [
+            {
+                "id": 3138,
+                "companyName": "易启科技",
+                "owner": "王云峰",
+                "companyDesc": "技术部门领导外来的，瞎指挥。公司开不下来工资。压工资。",
+                "adress": "明宇广场",
+                "createTime": "2025-11-03 14:17:09",
+                "updateTime": null,
+                "code": null,
+                "uuid": null
+            }
+        ]
+    }
+}

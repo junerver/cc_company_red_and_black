@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**UV-First 依赖管理合规性**: 所有Python包操作通过uv执行，禁止使用pip
+**API-First 数据设计合规性**: 数据结构基于外部API契约，使用Pydantic模型验证
+**SQLite 本地缓存优先合规性**: 实现本地SQLite缓存，包含时间戳和同步状态
+**FastAPI 异步优先合规性**: 所有端点使用async/await，数据库操作异步化
+**测试驱动开发合规性**: 单元测试覆盖率≥90%，集成测试覆盖关键流程
+**技术栈约束合规性**: 使用uv+FastAPI+SQLite+Pydantic核心栈，异步库支持
+**开发工作流合规性**: Feature分支PR流程，质量门禁检查，宪法合规验证
 
 ## Project Structure
 

@@ -1,50 +1,83 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+同步影响报告 (Sync Impact Report)
+=====================================
+
+版本变更: 无 -> 1.0.0 (初始宪法创建)
+修改原则: N/A (新建项目)
+新增章节:
+- UV-First 依赖管理 (I)
+- API-First 数据设计 (II) 
+- SQLite 本地缓存优先 (III)
+- FastAPI 异步优先 (IV)
+- 测试驱动开发 (V)
+- 技术栈约束 (新增)
+- 开发工作流 (新增)
+- 治理 (新增)
+删除章节: N/A
+
+模板更新状态:
+✅ plan-template.md - 已更新Constitution Check部分以反映新的宪法原则
+⚠ spec-template.md - 通用模板，无需特定更新
+⚠ tasks-template.md - 通用模板，无需特定更新
+⚠ checklist-template.md - 通用模板，无需特定更新
+
+待办事项: 无
+理由: 所有必要的宪法内容已完整定义，模板文件已同步更新
+
+-->
+
+# CC Company Red and Black Constitution
+<!-- UV-based Python API Data Synchronization Project -->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. UV-First 依赖管理
+<!-- 包管理器优先原则 -->
+所有Python包操作必须通过uv命令执行；禁止使用pip或python -m pip；依赖添加使用uv add，移除使用uv remove，项目启动使用uv run；确保依赖管理的原子性和可重现性；所有依赖必须在pyproject.toml中明确声明
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. API-First 数据设计
+<!-- 接口优先设计原则 -->
+数据结构必须基于外部API契约设计；所有数据模型必须与接口文档保持一致；接口变更必须触发数据模型同步更新；优先考虑数据兼容性和向后兼容；使用Pydantic模型进行数据验证和序列化
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. SQLite 本地缓存优先
+<!-- 本地缓存优先原则 -->
+所有从接口获取的数据必须先缓存到本地SQLite数据库；确保离线访问能力；缓存数据必须包含时间戳和同步状态；实现增量同步机制避免全量数据传输；提供缓存失效和刷新策略
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. FastAPI 异步优先
+<!-- 异步编程优先原则 -->
+所有API端点必须使用async/await模式；数据库操作必须使用异步连接池；HTTP客户端请求必须使用异步库；避免阻塞操作影响并发性能；使用asyncio进行并发任务管理；实现适当的超时和重试机制
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. 测试驱动开发 (NON-NEGOTIABLE)
+<!-- TDD强制执行原则 -->
+每个功能必须先编写测试用例；采用Red-Green-Refactor循环；单元测试覆盖率不低于90%；集成测试必须覆盖关键数据同步流程；API端点必须有完整的测试套件；使用pytest和pytest-asyncio进行异步测试
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## 技术栈约束
+<!-- 技术选型和版本要求 -->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**核心依赖栈**: uv (包管理) + FastAPI (后端框架) + SQLite (数据库) + Pydantic (数据验证)
+**Python版本**: 严格按照pyproject.toml中声明的版本要求
+**异步支持**: 必须使用支持异步操作的库版本 (aiosqlite, httpx等)
+**数据同步**: 必须实现增量同步和冲突解决机制
+**性能要求**: API响应时间 <200ms, 数据同步延迟 <5s
+**安全约束**: API密钥和敏感配置必须通过环境变量管理
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## 开发工作流
+<!-- 开发流程和质量门禁 -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**开发流程**: Feature分支 → Pull Request → 代码审查 → 自动化测试 → 合并到main
+**质量门禁**: 所有测试通过 + 代码覆盖率达标 + 静态分析无错误 + 宪法合规检查
+**代码审查**: 必须验证宪法原则合规性，重点检查uv使用、异步实现、缓存策略
+**部署流程**: 使用uv进行依赖安装和项目启动，确保环境一致性
+**监控要求**: 必须记录数据同步状态、API性能指标、错误日志
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+## 治理
+<!-- 项目治理和修订流程 -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+**宪法优先**: 宪法原则优先于所有其他开发实践和文档
+**修订流程**: 宪法修订需要提案讨论、团队同意、文档更新、迁移计划
+**合规检查**: 所有PR和代码审查必须验证宪法合规性
+**复杂性控制**: 任何偏离宪法原则的实现必须有明确的业务理由和简化方案评估
+**指导文件**: 开发过程中遇到的具体问题参考项目文档和最佳实践指南
+**争议解决**: 对宪法解释的争议由项目负责人最终裁定
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-11-03 | **Last Amended**: 2025-11-03
